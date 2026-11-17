@@ -1,0 +1,135 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const BASE = import.meta.env.BASE_URL;
+
+const contact = {
+  email: 'rs28102058@gmail.com',
+  whatsapp: '+977 9716100765',
+  whatsappLink: 'https://wa.me/9779716100765',
+  linkedin: 'https://www.linkedin.com/in/rohit-sah-202026229/',
+};
+---
+
+<BaseLayout title="AVR-PSS Case Study" description="Comparing PID, ANFIS and lead-lag stabilizers for generator voltage control — academic case study with MATLAB/Simulink results.">
+  <section class="project-detail section">
+    <div class="container">
+      <!-- Header -->
+      <div class="section-header" style="margin-bottom: 3rem;">
+        <span class="section-number">01</span>
+        <h1 style="font-size: 2.5rem; color: var(--ink); margin: 0; line-height: 1.2;">Comparing PID, ANFIS and lead-lag stabilizers for generator voltage control</h1>
+      </div>
+
+      <div class="project-meta" style="display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 3rem; color: var(--muted); font-size: 0.95rem;">
+        <span><strong>Type:</strong> Academic team project</span>
+        <span><strong>Year:</strong> 2025</span>
+        <span><strong>Institution:</strong> IOE Pashchimanchal Campus, Tribhuvan University</span>
+        <span><strong>Team:</strong> 5 members</span>
+      </div>
+
+      <div class="project-meta" style="display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 3rem; color: var(--muted); font-size: 0.95rem;">
+        <span><strong>My role:</strong> Project head; did most of the simulation work and the calculation tables</span>
+        <span><strong>Tools:</strong> MATLAB, Simulink, Fuzzy Logic Toolbox (ANFIS)</span>
+      </div>
+
+      <div class="glass-card scroll-reveal" style="margin-bottom: 3rem;">
+        <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--ink); margin: 0 0 1.5rem;">The problem</h2>
+        <p style="color: var(--muted); margin: 0; line-height: 1.8;">
+          An automatic voltage regulator (AVR) keeps a generator's terminal voltage steady, but its high gain can reduce damping and cause rotor oscillations after faults or load changes. A power system stabilizer (PSS) adds that damping back. The common lead-lag PSS is hard to tune, so we asked whether a PID or ANFIS design could do better.
+        </p>
+      </div>
+
+      <div class="glass-card scroll-reveal" style="margin-bottom: 3rem;">
+        <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--ink); margin: 0 0 1.5rem;">What we built</h2>
+        <ul style="color: var(--muted); margin: 0; padding-left: 1.5rem; line-height: 1.8;">
+          <li>A Simulink model of a 200 MVA, 13.8 kV synchronous generator stepped up through a 210 MVA, 13.8/230 kV transformer to a 230 kV grid</li>
+          <li>Four setups: AVR alone, AVR with a PSS2B-style lead-lag PSS, AVR with a PID-based PSS (auto-tuned in MATLAB), and AVR with an ANFIS-based PSS (trained on the PID controller's output over 50 epochs)</li>
+          <li>Two tests: a three-phase fault on the high-voltage side (4.1 s to 4.2 s) and a load step at 9 s</li>
+        </ul>
+      </div>
+
+      <div class="glass-card scroll-reveal" style="margin-bottom: 3rem;">
+        <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--ink); margin: 0 0 1.5rem;">Control loop block diagram</h2>
+        <img src="/content/figures/fig4-avr-pss-block-diagram.png" alt="AVR-PSS control loop block diagram" style="width: 100%; border-radius: 12px; border: 1px solid var(--glass-border);" />
+      </div>
+
+      <div class="glass-card scroll-reveal" style="margin-bottom: 3rem;">
+        <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--ink); margin: 0 0 1.5rem;">What we found</h2>
+
+        <div class="results-table" style="overflow-x: auto; margin-bottom: 2rem;">
+          <table style="width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.9rem;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--amber);">
+                <th style="text-align: left; padding: 1rem; color: var(--ink);">Setup</th>
+                <th style="text-align: center; padding: 1rem; color: var(--ink);">Settling time, fault</th>
+                <th style="text-align: center; padding: 1rem; color: var(--ink);">Settling time, load step</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--glass-border);">
+                <td style="padding: 1rem; color: var(--ink);">AVR only</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">2.78 s</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">2.765 s</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--glass-border);">
+                <td style="padding: 1rem; color: var(--ink);">Lead-lag PSS</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">2.618 s</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">2.49 s</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--glass-border);">
+                <td style="padding: 1rem; color: var(--ink); font-weight: 600;">PID PSS</td>
+                <td style="text-align: center; padding: 1rem; color: var(--amber); font-weight: 600;">1.051 s</td>
+                <td style="text-align: center; padding: 1rem; color: var(--amber); font-weight: 600;">0.188 s</td>
+              </tr>
+              <tr>
+                <td style="padding: 1rem; color: var(--ink);">ANFIS PSS</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">2.236 s</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">0.4597 s</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="color: var(--muted); margin: 0 0 2rem; line-height: 1.7;">
+          The PID-based PSS settled fastest in both tests and had the lowest overshoot after the fault (0.596%). The ANFIS PSS came second. It was trained on PID data and not fully fine-tuned, so I see it as a promising base rather than a finished design.
+        </p>
+
+        <p style="color: var(--muted); margin: 0 0 2rem; line-height: 1.7;">
+          Damping ratio results were mixed. After the fault, ANFIS (0.833) was slightly higher than PID (0.823), and the AVR-only case (0.826) was also slightly above PID. PID had the highest damping ratio only under the load step (0.894).
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+          <img src="/content/figures/fig1-settling-time.png" alt="Settling time comparison" style="width: 100%; border-radius: 12px; border: 1px solid var(--glass-border);" />
+          <img src="/content/figures/fig2-damping-ratio.png" alt="Damping ratio comparison" style="width: 100%; border-radius: 12px; border: 1px solid var(--glass-border);" />
+          <img src="/content/figures/fig3-overshoot-undershoot.png" alt="Overshoot and undershoot comparison" style="width: 100%; border-radius: 12px; border: 1px solid var(--glass-border);" />
+        </div>
+      </div>
+
+      <div class="glass-card scroll-reveal" style="margin-bottom: 3rem;">
+        <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--ink); margin: 0 0 1.5rem;">Limits</h2>
+        <ul style="color: var(--muted); margin: 0; padding-left: 1.5rem; line-height: 1.8;">
+          <li>Single machine connected to an infinite bus</li>
+          <li>Simulation only — no hardware testing</li>
+        </ul>
+      </div>
+
+      <div class="glass-card scroll-reveal" style="margin-bottom: 3rem;">
+        <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--ink); margin: 0 0 1.5rem;">Team</h2>
+        <p style="color: var(--muted); margin: 0; line-height: 1.8;">
+          Bivek Kumar Mallik, Nutan Raj Pathak, Rajiv Pandit, Rohit Kumar Sah, Soniya Karki.<br>
+          Supervisor: Asst. Prof. Suraj Shrestha.
+        </p>
+      </div>
+
+      <div class="glass-card scroll-reveal" style="margin-bottom: 3rem;">
+        <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--ink); margin: 0 0 1.5rem;">Note on the full report</h2>
+        <p style="color: var(--muted); margin: 0; line-height: 1.7;">
+          The full report PDF is not linked. Its copyright page restricts publishing for financial gain without department approval. Ask the department before hosting it.
+        </p>
+      </div>
+
+      <!-- Back link -->
+      <a href={`${BASE}work/`} class="btn btn-outline" style="display: inline-flex; align-items: center; gap: 0.5rem;">← Back to Work</a>
+    </div>
+  </section>
+</BaseLayout>

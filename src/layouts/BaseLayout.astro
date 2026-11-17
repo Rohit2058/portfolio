@@ -1,0 +1,283 @@
+---
+import Navbar from '../components/Navbar.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import BlueprintGrid from '../components/BlueprintGrid.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const { title, description, canonical, ogImage } = Astro.props;
+
+const pageTitle = title ? `${title} | Rohit Kumar Sah` : 'Rohit Kumar Sah — Electrical Engineer & Freelancer';
+const pageDesc = description || 'Electrical calculations, drawings and simulation, explained clearly. Load flow studies, load calculation, cable/breaker sizing, solar PV sizing, MATLAB/Simulink, AutoCAD drawings. Based in Banepa, Nepal. Working remotely.';
+const pageCanonical = canonical || `https://rohit2058.github.io${Astro.url.pathname}`;
+const pageOgImage = ogImage || 'https://rohit2058.github.io/portfolio/og-default.png';
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={pageDesc} />
+    <title>{pageTitle}</title>
+    <link rel="canonical" href={pageCanonical} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDesc} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={pageOgImage} />
+    <meta name="theme-color" content="#0b1220" />
+    <!-- Self-hosted fonts preload -->
+    <link rel="preload" href="/fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin />
+    <style is:global>
+      :root {
+        --navy: #0b1220;
+        --navy-dim: #0a0e1a;
+        --navy-deep: #080b14;
+        --amber: #ffb703;
+        --amber-soft: #ffc933;
+        --cyan: #4cc9f0;
+        --ink: #f0f4f8;
+        --muted: #94a3b8;
+        --glass: rgba(255, 255, 255, 0.04);
+        --glass-border: rgba(255, 255, 255, 0.08);
+        --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+
+      [data-theme="light"] {
+        --navy: #f1f5f9;
+        --navy-dim: #e2e8f0;
+        --navy-deep: #cbd5e1;
+        --amber: #d97706;
+        --amber-soft: #f59e0b;
+        --cyan: #0ea5e9;
+        --ink: #0f172a;
+        --muted: #64748b;
+        --glass: rgba(0, 0, 0, 0.03);
+        --glass-border: rgba(0, 0, 0, 0.08);
+        --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--font-body);
+        background: var(--navy);
+        color: var(--ink);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      [data-theme="light"] body {
+        background: #ffffff;
+        color: var(--ink);
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-heading);
+        margin-top: 0;
+        line-height: 1.2;
+      }
+
+      a {
+        color: var(--amber);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .mono {
+        font-family: var(--font-mono);
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .section {
+        padding: 5rem 0;
+      }
+
+      .section-number {
+        font-family: var(--font-mono);
+        font-size: 3rem;
+        font-weight: 700;
+        color: rgba(255, 183, 3, 0.15);
+        line-height: 1;
+      }
+
+      [data-theme="light"] .section-number {
+        color: rgba(217, 119, 6, 0.15);
+      }
+
+      .glass-card {
+        background: var(--glass);
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        padding: 1.75rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        transition: transform 0.2s ease, border-color 0.2s ease;
+      }
+
+      [data-theme="light"] .glass-card {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      }
+
+      .glass-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--amber-soft);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.85rem 1.75rem;
+        border-radius: 10px;
+        font-weight: 600;
+        font-family: var(--font-heading);
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .btn-primary {
+        background: var(--amber);
+        color: var(--navy);
+      }
+
+      .btn-primary:hover {
+        background: var(--amber-soft);
+        transform: translateY(-2px);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: var(--ink);
+        border: 1px solid var(--glass-border);
+      }
+
+      .btn-outline:hover {
+        border-color: var(--amber);
+        color: var(--amber);
+      }
+
+      .btn-icon-whatsapp {
+        background: #25d366;
+        color: white;
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        z-index: 1000;
+        padding: 1rem 1.25rem;
+        border-radius: 50px;
+        box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
+        transition: all 0.2s ease;
+        font-family: var(--font-heading);
+        font-weight: 600;
+      }
+
+      .btn-icon-whatsapp:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 28px rgba(37, 211, 102, 0.4);
+      }
+
+      .badge-todo {
+        display: inline-block;
+        padding: 0.15rem 0.5rem;
+        background: var(--amber);
+        color: var(--navy);
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        font-family: var(--font-mono);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-left: 0.5rem;
+      }
+
+      .scroll-reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      .scroll-reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .scroll-reveal {
+          opacity: 1;
+          transform: none;
+        }
+        html {
+          scroll-behavior: auto;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .section {
+          padding: 3.5rem 0;
+        }
+        .container {
+          padding: 0 1rem;
+        }
+        .section-number {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <Navbar />
+    <main id="main"><slot /></main>
+    <ThemeToggle />
+    <FloatingWhatsApp />
+    <script is:inline>
+      // Scroll reveal IntersectionObserver
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+      document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+      // Theme system - apply saved theme immediately to prevent flash
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const BASE = import.meta.env.BASE_URL;
+
+const services = [
+  {
+    title: 'Load flow (power flow) studies',
+    description: 'Bus voltages, line flows and losses for small power systems and distribution networks, modelled in MATLAB/Simulink, with the method, data and assumptions written out. See the 5-bus worked example under Work.',
+    badge: 'Primary service',
+  },
+  {
+    title: 'Load calculation and demand estimation',
+    description: 'Connected load, demand factors and main breaker size for houses, apartments and small shops. You get a spreadsheet with every assumption visible.',
+  },
+  {
+    title: 'Cable sizing, voltage drop and MCB selection',
+    description: 'Circuit-by-circuit schedule that checks breaker rating, cable capacity and voltage drop.',
+  },
+  {
+    title: 'Solar PV and battery sizing',
+    description: 'On-grid or off-grid sizing from your appliance list and roof area, with panel count, battery size, inverter and charge controller ratings.',
+  },
+  {
+    title: 'Earthing calculations',
+    description: 'Earthing electrode and resistance calculations for homes and small buildings, with the method and assumptions written out.',
+  },
+  {
+    title: 'Single-line diagrams and electrical drawings',
+    description: 'Clear single-line diagrams and distribution board schedules, drawn in AutoCAD.',
+  },
+  {
+    title: 'MATLAB/Simulink modelling and simulation',
+    description: 'Control systems, power system studies and basic power electronics, with explanation of the method and results.',
+  },
+  {
+    title: 'Technical tutoring and training',
+    description: 'Electrical subjects for diploma and bachelor students, online only. I help you understand the work; I don\'t do assignments or theses for submission.',
+  },
+];
+
+const contact = {
+  email: 'rs28102058@gmail.com',
+  whatsapp: '+977 9716100765',
+  whatsappLink: 'https://wa.me/9779716100765',
+  linkedin: 'https://www.linkedin.com/in/rohit-sah-202026229/',
+};
+---
+
+<BaseLayout title="Services" description="Electrical engineering services: load flow studies, load calculation, cable/breaker sizing, solar PV sizing, earthing calculations, single-line diagrams, MATLAB/Simulink simulation, and technical tutoring.">
+  <section class="services section">
+    <div class="container">
+      <div class="section-header" style="margin-bottom: 3rem;">
+        <span class="section-number">01</span>
+        <h1 style="font-size: 2.5rem; color: var(--ink); margin: 0;">Services</h1>
+      </div>
+      <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+        {services.map((svc, i) => (
+          <div class="glass-card scroll-reveal" style="display: flex; flex-direction: column;">
+            <div class="service-number" style="font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; color: var(--amber); margin-bottom: 1rem;">0{i + 1}</div>
+            <h3 style="font-family: var(--font-heading); font-size: 1.25rem; color: var(--ink); margin: 0 0 1rem;">{svc.title}</h3>
+            {svc.badge && <span class="badge-todo" style="margin-bottom: 1rem; display: inline-block;">{svc.badge}</span>}
+            <p style="color: var(--muted); margin: 0 0 1.5rem; line-height: 1.7; flex: 1;">{svc.description}</p>
+            <a href={`${BASE}contact/`} class="btn btn-outline" style="margin-top: auto;">Get a quote</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-cta section" style="text-align: center;">
+    <div class="container">
+      <h2 style="font-size: 2rem; color: var(--ink); margin: 0 0 1rem;">Have a project?</h2>
+      <p style="color: var(--muted); margin: 0 0 2rem;">I work remotely — calculations, studies, drawings and online tutoring. No site visits.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href={contact.whatsappLink} class="btn btn-primary" target="_blank" rel="noopener noreferrer">WhatsApp me</a>
+        <a href={`mailto:${contact.email}`} class="btn btn-outline">Email me</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

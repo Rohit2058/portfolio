@@ -1,0 +1,43 @@
+---
+// FloatingWhatsApp.astro
+---
+
+<a
+  href="https://wa.me/9779716100765"
+  class="btn-icon-whatsapp"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="WhatsApp me"
+>
+  WhatsApp
+</a>
+
+<style>
+  .btn-icon-whatsapp {
+    background: #25d366;
+    color: white;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 1000;
+    padding: 1rem 1.25rem;
+    border-radius: 50px;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
+    transition: all 0.2s ease;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .btn-icon-whatsapp:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(37, 211, 102, 0.4);
+  }
+  @media (max-width: 768px) {
+    .btn-icon-whatsapp {
+      bottom: 1rem;
+      right: 1rem;
+      padding: 0.85rem 1rem;
+      font-size: 0.9rem;
+    }
+  }
+</style>

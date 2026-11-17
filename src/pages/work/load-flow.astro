@@ -1,0 +1,197 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const BASE = import.meta.env.BASE_URL;
+
+const contact = {
+  email: 'rs28102058@gmail.com',
+  whatsapp: '+977 9716100765',
+  whatsappLink: 'https://wa.me/9779716100765',
+  linkedin: 'https://www.linkedin.com/in/rohit-sah-202026229/',
+};
+---
+
+<BaseLayout title="5-Bus Load Flow Worked Example" description="5-bus Newton-Raphson load flow worked example — workbook, MATLAB script, network diagram, convergence chart and write-up. Assumed data, not a client project.">
+  <section class="project-detail section">
+    <div class="container">
+      <!-- Header -->
+      <div class="section-header" style="margin-bottom: 3rem;">
+        <span class="section-number">02</span>
+        <h1 style="font-size: 2.5rem; color: var(--ink); margin: 0; line-height: 1.2;">5-bus Newton-Raphson load flow</h1>
+      </div>
+
+      <div class="project-meta" style="display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 3rem; color: var(--muted); font-size: 0.95rem;">
+        <span class="badge-todo" style="margin: 0;">Worked example · Assumed data</span>
+        <span><strong>Method:</strong> Newton-Raphson power flow</span>
+        <span><strong>Tools:</strong> MATLAB, Excel</span>
+      </div>
+
+      <div class="glass-card scroll-reveal" style="margin-bottom: 3rem;">
+        <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--ink); margin: 0 0 1.5rem;">What this is</h2>
+        <p style="color: var(--muted); margin: 0; line-height: 1.8;">
+          A complete worked example of a 5-bus power system solved with the Newton-Raphson method. This is a learning exercise with assumed data — not a client project. Check all values against current standards and NEA rules before real use.
+        </p>
+      </div>
+
+      <div class="glass-card scroll-reveal" style="margin-bottom: 3rem;">
+        <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--ink); margin: 0 0 1.5rem;">Deliverables</h2>
+        <ul style="color: var(--muted); margin: 0; padding-left: 1.5rem; line-height: 1.8;">
+          <li>Excel workbook with bus data, line data, Y-bus, iteration tables, and final results</li>
+          <li>MATLAB script (<code>solve_loadflow.m</code>) that solves the system and plots convergence</li>
+          <li>Network diagram showing bus numbers, voltages, angles, and power flows</li>
+          <li>Convergence chart (mismatch vs. iteration)</li>
+          <li>Short write-up with method, assumptions, and how to read the results</li>
+        </ul>
+      </div>
+
+      <div class="glass-card scroll-reveal" style="margin-bottom: 3rem;">
+        <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--ink); margin: 0 0 1.5rem;">System data</h2>
+        <div class="results-table" style="overflow-x: auto; margin-bottom: 1.5rem;">
+          <table style="width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.9rem;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--amber);">
+                <th style="text-align: left; padding: 1rem; color: var(--ink);">Bus</th>
+                <th style="text-align: center; padding: 1rem; color: var(--ink);">Type</th>
+                <th style="text-align: center; padding: 1rem; color: var(--ink);">|V| (p.u.)</th>
+                <th style="text-align: center; padding: 1rem; color: var(--ink);">δ (deg)</th>
+                <th style="text-align: center; padding: 1rem; color: var(--ink);">Pg (MW)</th>
+                <th style="text-align: center; padding: 1rem; color: var(--ink);">Qg (MVar)</th>
+                <th style="text-align: center; padding: 1rem; color: var(--ink);">Pl (MW)</th>
+                <th style="text-align: center; padding: 1rem; color: var(--ink);">Ql (MVar)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--glass-border);">
+                <td style="padding: 1rem; color: var(--ink);">1</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">Slack</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">1.05</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">0.00</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">—</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">—</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">0</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">0</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--glass-border);">
+                <td style="padding: 1rem; color: var(--ink);">2</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">PV</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">1.02</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">—</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">50</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">—</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">0</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">0</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--glass-border);">
+                <td style="padding: 1rem; color: var(--ink);">3</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">PQ</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">—</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">—</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">0</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">0</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">90</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">50</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--glass-border);">
+                <td style="padding: 1rem; color: var(--ink);">4</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">PQ</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">—</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">—</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">0</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">0</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">60</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">30</td>
+              </tr>
+              <tr>
+                <td style="padding: 1rem; color: var(--ink);">5</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">PQ</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">—</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">—</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">0</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">0</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">40</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">20</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="color: var(--muted); font-size: 0.85rem; margin: 0; font-family: var(--font-mono);">
+          Base: 100 MVA. Line data in the workbook and MATLAB script.
+        </p>
+      </div>
+
+      <div class="glass-card scroll-reveal" style="margin-bottom: 3rem;">
+        <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--ink); margin: 0 0 1.5rem;">Convergence</h2>
+        <img src="/content/figures/loadflow-convergence.png" alt="Newton-Raphson convergence chart" style="width: 100%; max-width: 600px; border-radius: 12px; border: 1px solid var(--glass-border);" />
+        <p style="color: var(--muted); margin: 1rem 0 0; font-size: 0.9rem;">
+          Mismatch drops below 1×10⁻⁶ p.u. in 4 iterations.
+        </p>
+      </div>
+
+      <div class="glass-card scroll-reveal" style="margin-bottom: 3rem;">
+        <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--ink); margin: 0 0 1.5rem;">Final bus results</h2>
+        <div class="results-table" style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.9rem;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--amber);">
+                <th style="text-align: left; padding: 1rem; color: var(--ink);">Bus</th>
+                <th style="text-align: center; padding: 1rem; color: var(--ink);">|V| (p.u.)</th>
+                <th style="text-align: center; padding: 1rem; color: var(--ink);">δ (deg)</th>
+                <th style="text-align: center; padding: 1rem; color: var(--ink);">Pg (MW)</th>
+                <th style="text-align: center; padding: 1rem; color: var(--ink);">Qg (MVar)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--glass-border);">
+                <td style="padding: 1rem; color: var(--ink);">1</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">1.0500</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">0.000</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">168.42</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">24.18</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--glass-border);">
+                <td style="padding: 1rem; color: var(--ink);">2</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">1.0200</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">-4.321</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">50.00</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">38.72</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--glass-border);">
+                <td style="padding: 1rem; color: var(--ink);">3</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">0.9684</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">-6.105</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">0</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">0</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--glass-border);">
+                <td style="padding: 1rem; color: var(--ink);">4</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">0.9752</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">-5.832</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">0</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">0</td>
+              </tr>
+              <tr>
+                <td style="padding: 1rem; color: var(--ink);">5</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">0.9821</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">-5.217</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">0</td>
+                <td style="text-align: center; padding: 1rem; color: var(--muted);">0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="glass-card scroll-reveal" style="margin-bottom: 3rem;">
+        <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--ink); margin: 0 0 1.5rem;">Download files</h2>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="/content/samples/sample-5bus-load-flow.xlsx" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem;">Excel workbook</a>
+          <a href="/content/samples/solve_loadflow.m" class="btn btn-outline" style="display: inline-flex; align-items: center; gap: 0.5rem;">MATLAB script</a>
+        </div>
+      </div>
+
+      <!-- Back link -->
+      <a href={`${BASE}work/`} class="btn btn-outline" style="display: inline-flex; align-items: center; gap: 0.5rem;">← Back to Work</a>
+    </div>
+  </section>
+</BaseLayout>

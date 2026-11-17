@@ -1,0 +1,106 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const academicProject = {
+  title: 'Comparing PID, ANFIS and lead-lag stabilizers for generator voltage control',
+  type: 'Academic team project',
+  year: 2025,
+  institution: 'IOE Pashchimanchal Campus, Tribhuvan University',
+  teamSize: 5,
+  myRole: 'Project head; did most of the simulation work and the calculation tables',
+  link: '/work/avr-pss/',
+};
+
+const sampleDeliverables = [
+  {
+    title: '5-bus Newton-Raphson load flow',
+    subtitle: 'Worked example, not a client project',
+    description: 'Workbook, MATLAB script, network diagram with bus voltages and flows, convergence chart, and a short write-up.',
+    link: '/work/load-flow/',
+    badge: 'Worked example · Assumed data',
+    files: [
+      { name: 'sample-5bus-load-flow.xlsx', href: '/content/samples/sample-5bus-load-flow.xlsx' },
+      { name: 'solve_loadflow.m', href: '/content/samples/solve_loadflow.m' },
+    ],
+  },
+  {
+    title: 'Load calculation, cable/MCB schedule and solar sizing workbook',
+    subtitle: 'Worked example, not a client project',
+    description: 'Fictional 3-bedroom house in Banepa.',
+    link: '/content/samples/sample-electrical-calculations-banepa.xlsx',
+    badge: 'Download',
+    files: [
+      { name: 'sample-electrical-calculations-banepa.xlsx', href: '/content/samples/sample-electrical-calculations-banepa.xlsx' },
+    ],
+  },
+  {
+    title: 'Single-line diagram',
+    subtitle: 'Worked example, not a client project',
+    description: 'Single-line diagram for the same house.',
+    link: '/content/samples/sample-single-line-diagram.png',
+    badge: 'View',
+    files: [
+      { name: 'sample-single-line-diagram.png', href: '/content/samples/sample-single-line-diagram.png' },
+    ],
+  },
+];
+
+const contact = {
+  email: 'rs28102058@gmail.com',
+  whatsapp: '+977 9716100765',
+  whatsappLink: 'https://wa.me/9779716100765',
+  linkedin: 'https://www.linkedin.com/in/rohit-sah-202026229/',
+};
+---
+
+<BaseLayout title="Work" description="Selected work and sample deliverables — AVR-PSS academic case study and 5-bus load flow worked example. All sample files are worked examples with assumed values.">
+  <section class="work section">
+    <div class="container">
+      <!-- Academic Project -->
+      <div class="work-group" style="margin-bottom: 4rem;">
+        <div class="section-header" style="margin-bottom: 2rem;">
+          <span class="section-number">01</span>
+          <h2 style="font-size: 2rem; color: var(--ink); margin: 0;">Academic project</h2>
+        </div>
+        <div class="glass-card">
+          <h3 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--ink); margin: 0 0 1rem;">{academicProject.title}</h3>
+          <p style="color: var(--muted); margin: 0 0 1.5rem; line-height: 1.7;">Academic team project ({academicProject.teamSize} members), final year BE Electrical Engineering, {academicProject.institution}, {academicProject.year}.</p>
+          <p style="color: var(--muted); margin: 0;"><strong>My role:</strong> {academicProject.myRole}</p>
+          <a href={academicProject.link} class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem;">Read the case study <span>→</span></a>
+        </div>
+      </div>
+
+      <!-- Sample Deliverables -->
+      <div class="work-group">
+        <div class="section-header" style="margin-bottom: 2rem;">
+          <span class="section-number">02</span>
+          <h2 style="font-size: 2rem; color: var(--ink); margin: 0;">Sample deliverables</h2>
+          <p style="color: var(--muted); font-size: 0.95rem; margin-top: 0.5rem;">Worked examples with assumed data — not client projects. Check against current standards and NEA rules before real use.</p>
+        </div>
+        <div class="samples-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+          {sampleDeliverables.map((s) => (
+            <div class="glass-card scroll-reveal">
+              <div class="sample-badge" style="display: inline-block; margin-bottom: 1rem;">
+                <span class="badge-todo">{s.badge}</span>
+              </div>
+              <h3 style="font-family: var(--font-heading); font-size: 1.25rem; color: var(--ink); margin: 0 0 0.75rem;">{s.title}</h3>
+              <p style="color: var(--muted); margin: 0 0 1.5rem; font-size: 0.95rem; line-height: 1.6;">{s.subtitle}</p>
+              <p style="color: var(--ink); font-size: 0.9rem; margin: 0 0 1.5rem; flex: 1;">{s.description}</p>
+              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                {s.link && !s.link.startsWith('/content') && (
+                    <a href={s.link} class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem;">Read the case study <span>→</span></a>
+                  )}
+                  {s.files.map((f) => (
+                    <a href={f.href} class="btn btn-outline" style="flex: 1; justify-content: center; {!f.href.startsWith('/content') && 'target="_blank" rel="noopener noreferrer"}">{f.name}</a>
+                  ))}
+              </div>
+            </div>
+          ))}
+        </div>
+        <p style="color: var(--muted); font-size: 0.85rem; margin-top: 1.5rem; font-family: var(--font-mono);">
+          Sample files are worked examples with assumed values. Check them against current standards and NEA rules before real use.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

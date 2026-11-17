@@ -1,0 +1,5 @@
+- generic [ref=e2]:
+  - heading "🎉 First Website" [level=1] [ref=e3]
+  - paragraph [ref=e4]: Welcome to your first website project! This is a simple starter page.
+  - link "Get Started" [ref=e5] [cursor=pointer]:
+    - /url: "#"

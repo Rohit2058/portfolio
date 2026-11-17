@@ -1,0 +1,78 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const contact = {
+  email: 'rs28102058@gmail.com',
+  whatsapp: '+977 9716100765',
+  whatsappLink: 'https://wa.me/9779716100765',
+  linkedin: 'https://www.linkedin.com/in/rohit-sah-202026229/',
+};
+
+const aboutCopy = `I'm Rohit Kumar Sah, an electrical engineer from Banepa. I graduated with a BE in Electrical Engineering from Tribhuvan University, IOE Pashchimanchal Campus, in 2025, and I now teach as an Electrical Engineering Instructor at Banepa Polytechnic Institute.
+
+My degree work was in power system control and simulation. I was the project head of my five-member final-year team, and I did most of the simulation work and calculation tables for the project, which compared PID, ANFIS and lead-lag stabilizers in MATLAB/Simulink. Day to day, I do the calculations behind electrical designs: how much load a house will draw, which breaker and cable suit each circuit, and how big a solar and battery system needs to be.
+
+I'm early in my career and I haven't completed paid site projects yet. What I offer is careful, well-documented calculation work, and teaching has made me good at explaining the reasoning so you can check it yourself. I work remotely and do not do site visits. Where a job needs a registered engineer's stamp or an on-site inspection, I will tell you at the start.
+
+Registration: <span class="badge-todo">TODO — NEC registration number</span>`;
+
+const tools = ['MATLAB', 'Simulink', 'AutoCAD', 'Excel'];
+---
+
+<BaseLayout title="About" description="About Rohit Kumar Sah — BE Electrical Engineering, TU (2025), Instructor at Banepa Polytechnic Institute. Freelance electrical engineer based in Banepa, Nepal.">
+  <section class="about section">
+    <div class="container">
+      <div class="about-grid" style="display: grid; grid-template-columns: 1fr 360px; gap: 3rem; align-items: start;">
+        <div>
+          <div class="section-header" style="margin-bottom: 2.5rem;">
+            <span class="section-number">01</span>
+            <h1 style="font-size: 2.5rem; color: var(--ink); margin: 0;">About me</h1>
+          </div>
+          <div class="about-text" style="color: var(--muted); line-height: 1.8; font-size: 1.05rem;" set:html={aboutCopy.split('\n\n').map(p => `<p>${p}</p>`).join('')} />
+          <div class="tools-list" style="margin-top: 2.5rem;">
+            <h3 style="font-family: var(--font-heading); font-size: 1rem; color: var(--ink); margin: 0 0 1rem; text-transform: uppercase; letter-spacing: 0.1em;">Tools</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+              {tools.map(t => (
+                <span class="tool-tag" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.9rem; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 20px; font-family: var(--font-mono); font-size: 0.85rem; color: var(--ink);">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div class="about-photo" style="position: relative;">
+          <img src="/content/images/profile.jpg" alt="Rohit Kumar Sah" style="width: 100%; border-radius: 24px; border: 3px solid var(--amber-soft); box-shadow: 0 20px 60px rgba(255, 183, 3, 0.2); display: block;" />
+          <div class="glow-ring" style="position: absolute; inset: -12px; border-radius: 36px; border: 1px solid var(--amber); opacity: 0.35; animation: pulse 4s ease-in-out infinite;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="teaching section" style="background: var(--navy-dim); padding: 4rem 0;">
+    <div class="container">
+      <div class="glass-card">
+        <h2 style="font-family: var(--font-heading); font-size: 1.75rem; color: var(--ink); margin: 0 0 1rem;">Teaching</h2>
+        <p style="color: var(--muted); margin: 0; line-height: 1.7;">I'm an Electrical Engineering Instructor at Banepa Polytechnic Institute, where I teach on-site diploma and bachelor students. For freelance work, I tutor online only — I help you understand the work; I don't do assignments or theses for submission.</p>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.35; }
+      50% { transform: scale(1.05); opacity: 0.15; }
+    }
+    .tool-tag:hover {
+      border-color: var(--amber);
+    }
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      .about-photo {
+        max-width: 280px;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</BaseLayout>
