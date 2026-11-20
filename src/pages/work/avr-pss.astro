@@ -50,7 +50,7 @@ const contact = {
 
       <div class="glass-card scroll-reveal" style="margin-bottom: 3rem;">
         <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--ink); margin: 0 0 1.5rem;">Control loop block diagram</h2>
-        <img src="/content/figures/fig4-avr-pss-block-diagram.png" alt="AVR-PSS control loop block diagram" style="width: 100%; border-radius: 12px; border: 1px solid var(--glass-border);" />
+        <img src={`${BASE}content/figures/fig4-avr-pss-block-diagram.png`} alt="AVR-PSS control loop block diagram" style="width: 100%; border-radius: 12px; border: 1px solid var(--glass-border);" />
       </div>
 
       <div class="glass-card scroll-reveal" style="margin-bottom: 3rem;">
@@ -98,10 +98,10 @@ const contact = {
           Damping ratio results were mixed. After the fault, ANFIS (0.833) was slightly higher than PID (0.823), and the AVR-only case (0.826) was also slightly above PID. PID had the highest damping ratio only under the load step (0.894).
         </p>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-          <img src="/content/figures/fig1-settling-time.png" alt="Settling time comparison" style="width: 100%; border-radius: 12px; border: 1px solid var(--glass-border);" />
-          <img src="/content/figures/fig2-damping-ratio.png" alt="Damping ratio comparison" style="width: 100%; border-radius: 12px; border: 1px solid var(--glass-border);" />
-          <img src="/content/figures/fig3-overshoot-undershoot.png" alt="Overshoot and undershoot comparison" style="width: 100%; border-radius: 12px; border: 1px solid var(--glass-border);" />
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(1rem, 2vw, 1.5rem);">
+          <img src={`${BASE}content/figures/fig1-settling-time.png`} alt="Settling time comparison" style="width: 100%; border-radius: 12px; border: 1px solid var(--glass-border);" />
+          <img src={`${BASE}content/figures/fig2-damping-ratio.png`} alt="Damping ratio comparison" style="width: 100%; border-radius: 12px; border: 1px solid var(--glass-border);" />
+          <img src={`${BASE}content/figures/fig3-overshoot-undershoot.png`} alt="Overshoot and undershoot comparison" style="width: 100%; border-radius: 12px; border: 1px solid var(--glass-border);" />
         </div>
       </div>
 
@@ -116,16 +116,14 @@ const contact = {
       <div class="glass-card scroll-reveal" style="margin-bottom: 3rem;">
         <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--ink); margin: 0 0 1.5rem;">Team</h2>
         <p style="color: var(--muted); margin: 0; line-height: 1.8;">
-          Bivek Kumar Mallik, Nutan Raj Pathak, Rajiv Pandit, Rohit Kumar Sah, Soniya Karki.<br>
+          Rohit Kumar Sah, Bivek Kumar Mallik, Nutan Raj Pathak, Rajiv Pandit, Soniya Karki.<br>
           Supervisor: Asst. Prof. Suraj Shrestha.
         </p>
       </div>
 
       <div class="glass-card scroll-reveal" style="margin-bottom: 3rem;">
-        <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--ink); margin: 0 0 1.5rem;">Note on the full report</h2>
-        <p style="color: var(--muted); margin: 0; line-height: 1.7;">
-          The full report PDF is not linked. Its copyright page restricts publishing for financial gain without department approval. Ask the department before hosting it.
-        </p>
+        <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--ink); margin: 0 0 1.5rem;">Full report</h2>
+        <a href={`${BASE}assets/docs/avr-pss-report.pdf`} class="btn btn-primary" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.5rem;">View full report (PDF) <span>→</span></a>
       </div>
 
       <!-- Back link -->

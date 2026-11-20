@@ -90,7 +90,9 @@
     }
 
     toggle.addEventListener('click', () => {
-      const current = html.getAttribute('data-theme') || html.classList.contains('theme-system') ? 'system' : html.getAttribute('data-theme') || 'system';
+      const storedAttr = html.getAttribute('data-theme');
+      const hasSystem = html.classList.contains('theme-system');
+      const current = storedAttr ? storedAttr : (hasSystem ? 'system' : localStorage.getItem('theme') || 'system');
       const next = current === 'system' ? (getSystemTheme() === 'dark' ? 'light' : 'dark') : current === 'dark' ? 'light' : 'system';
       localStorage.setItem('theme', next);
       applyTheme(next);

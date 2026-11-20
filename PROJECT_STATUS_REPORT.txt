@@ -1,0 +1,282 @@
+================================================================================
+PROJECT STATUS REPORT: Rohit Kumar Sah Portfolio Website
+================================================================================
+Generated: 2026-11-18
+Project: Freelance Electrical Engineering Portfolio
+Repository: https://github.com/rohit2058/portfolio
+Deployment Target: GitHub Pages at https://rohit2058.github.io/portfolio/
+Base Path: /portfolio/
+
+--------------------------------------------------------------------------------
+1. PROJECT OVERVIEW
+--------------------------------------------------------------------------------
+A static portfolio website for Rohit Kumar Sah, Electrical Engineer (BE Electrical
+Engineering, TU 2025), Instructor at Banepa Polytechnic Institute. The site
+showcases freelance electrical engineering services including load flow studies,
+load calculations, cable/breaker sizing, solar PV sizing, earthing calculations,
+single-line diagrams, MATLAB/Simulink simulation, and technical tutoring.
+
+Technology Stack:
+- Astro 4.16 (Static Site Generation)
+- Plain CSS with CSS Custom Properties (zero JS by default)
+- Content Collections (astro:content) for structured content
+- Self-hosted web fonts: Space Grotesk, Inter, JetBrains Mono
+- Google Fonts: EB Garamond (headings) + Lato (body) via design system
+- GitHub Pages deployment with withastro/action + actions/deploy-pages
+- Responsive breakpoints: 390px, 768px, 1024px, 1440px
+
+--------------------------------------------------------------------------------
+2. PAGES IMPLEMENTED (7 Total)
+--------------------------------------------------------------------------------
+✓ src/pages/index.astro         - Home page with hero, trust strip, services,
+                                  selected work, how I work, contact CTA
+✓ src/pages/about.astro         - About page with bio, tools list, teaching section
+✓ src/pages/services.astro      - 8 services from site-copy collection
+✓ src/pages/work.astro          - Academic project card + sample deliverables grid
+✓ src/pages/work/avr-pss.astro  - AVR-PSS case study (MATLAB/Simulink)
+✓ src/pages/work/load-flow.astro - 5-bus load flow worked example
+✓ src/pages/contact.astro       - Contact page with WhatsApp/email/LinkedIn cards
+
+All pages render correctly with:
+- Statement heroes (one screen each, --h: 1)
+- Section-per-screen layout rhythm (--h: 1 or 2)
+- Equal left/right content edges (12-col grid, 24px gutter)
+- Hero entrance animations (data-enter stagger)
+- Hover micro-animations (card lift 2px, photo zoom 1.02-1.03)
+- Responsive grids at all breakpoints
+
+--------------------------------------------------------------------------------
+3. CONTENT COLLECTIONS
+--------------------------------------------------------------------------------
+Defined in src/content/config.ts:
+- site-copy: Main site copy (markdown) with services, bio, etc.
+- projects: Academic projects (AVR-PSS) with frontmatter schema
+- samples: Sample deliverables (5-bus load flow) with frontmatter schema
+
+--------------------------------------------------------------------------------
+4. DESIGN SYSTEM (ui-ux-pro-max)
+--------------------------------------------------------------------------------
+Generated and persisted at: design-system/rohit-kumar-sah-portfolio/MASTER.md
+
+Color Palette: Authority Navy + Trust Gold
+- Primary: #1E3A8A (Authority Navy)
+- Accent/CTA: #B45309 (Trust Gold)
+- Background: #F8FAFC (Light) / #0F172A (Dark)
+- Foreground: #0F172A (Light) / #F8FAFC (Dark)
+- Full semantic token set with light/dark mode support
+
+Typography:
+- Heading: EB Garamond (400, 500, 600, 700)
+- Body: Lato (300, 400, 700)
+- Mono: JetBrains Mono (self-hosted)
+
+Pattern: Trust & Authority + Conversion
+Style: Accessible & Ethical
+
+Spacing System (layout-v4 rhythm tokens):
+- --space-xs: 4px, --space-sm: 8px, --space-md: 16px
+- --space-lg: 24px, --space-xl: 32px, --space-2xl: 48px, --space-3xl: 64px
+- --padt (desktop): 120px, --padb (desktop): 80px
+- --padt (mobile): 80px, --padb (mobile): 48px
+- --nav: 64px
+
+Shadow System:
+- --shadow-sm through --shadow-xl (4 levels)
+
+Border Radius:
+- --r-sm: 6px, --r-md: 10px, --r-lg: 14px, --r-btn: 8px
+
+--------------------------------------------------------------------------------
+5. KEY FIXES APPLIED
+--------------------------------------------------------------------------------
+✓ 404 on all assets: Fixed absolute paths by prefixing with import.meta.env.BASE_URL
+✓ Content collections not found: Created src/content/config.ts with schemas
+✓ Navigation broken in dev/preview: All links use BASE_URL prefix
+✓ Markdown images 404: Added remark plugin in astro.config.mjs
+✓ Load-flow images not rendering: Added explicit <img> components
+✓ Theme toggle duplicate init: Removed duplicate from BaseLayout.astro
+✓ Theme toggle dark mode: Fixed setAttribute('data-theme', 'dark') logic
+✓ Vite dev server parsing error: Cleared .astro, node_modules/.vite, dist cache
+✓ "Worked examples" badge text: Removed all .badge-todo elements
+✓ Location wording: Changed "Based in Banepa"/"from Banepa" → "currently based in Banepa"
+  (applied across index, about, contact, BaseLayout)
+
+--------------------------------------------------------------------------------
+6. THEME TOGGLE (FIXED & WORKING)
+--------------------------------------------------------------------------------
+Location: src/components/ThemeToggle.astro
+Features:
+- 3-mode cycling: Light → Dark → System → Light
+- SVG icons: Sun (light), Moon (dark), Monitor (system)
+- localStorage persistence
+- System preference listener (media query)
+- Fixed click handler logic with proper theme detection
+- Accessible: focus-visible states, keyboard support
+
+--------------------------------------------------------------------------------
+7. NAVBAR (FIXED & RESPONSIVE)
+--------------------------------------------------------------------------------
+Location: src/components/Navbar.astro
+Features:
+- Sticky with backdrop blur
+- BASE_URL prefixes for all navigation links
+- Mobile hamburger menu (≤768px)
+- Active state indication
+- Accessible: focus-visible, proper ARIA
+
+--------------------------------------------------------------------------------
+8. BASE LAYOUT (UPDATED WITH DESIGN SYSTEM)
+--------------------------------------------------------------------------------
+Location: src/layouts/BaseLayout.astro
+Features:
+- Complete CSS custom properties for theming (light/dark/system)
+- Google Fonts (EB Garamond + Lato) preconnect/preload
+- Self-hosted JetBrains Mono preload
+- design-taste-frontend system.css + moments.js loaded
+- Theme initialization (single source of truth in ThemeToggle.astro)
+- Scroll-reveal IntersectionObserver
+- Glass card, button, utility classes
+- BlueprintGrid animated SVG background
+- Meta tags: page-type="service", site-kind="other"
+- OG tags with BASE_URL
+
+--------------------------------------------------------------------------------
+9. RESPONSIVE DESIGN VERIFICATION
+--------------------------------------------------------------------------------
+Breakpoints tested: 390px, 768px, 1024px, 1440px
+
+All pages verified at each breakpoint:
+- Hero sections: One screen (--h: 1) with proper padding
+- Content sections: 1-2 screens (--h: 1 or 2)
+- Grid layouts: Auto-fit minmax columns
+- Typography: clamp()-based fluid scaling
+- Touch targets: Minimum 44x44px
+- No horizontal scroll at any breakpoint
+- Equal left/right content edges maintained
+
+--------------------------------------------------------------------------------
+10. ACCESSIBILITY COMPLIANCE
+--------------------------------------------------------------------------------
+✓ Contrast ratio ≥ 4.5:1 (light and dark modes)
+✓ Focus visible states on all interactive elements
+✓ Skip link in BaseLayout
+✓ Semantic HTML structure (header, main, footer, section, article)
+✓ Alt text on all images
+✓ ARIA labels where needed
+✓ prefers-reduced-motion respected (animations disabled)
+✓ Keyboard navigation support
+✓ lang="en" on html element
+
+--------------------------------------------------------------------------------
+11. ANIMATION & INTERACTION
+--------------------------------------------------------------------------------
+- Hero entrance: Staggered fade + slide up (600ms ease)
+- Card hover: Lift 2px + shadow-lg (200ms ease)
+- Photo zoom: Scale 1.02-1.03 on hover (200ms ease)
+- Button press: Scale 0.98 on active
+- Theme toggle: Rotate + scale on hover/press
+- Scroll reveal: IntersectionObserver with 100ms stagger
+- BlueprintGrid: Animated SVG pattern (damped oscillation)
+
+--------------------------------------------------------------------------------
+12. BUILD & DEPLOYMENT STATUS
+--------------------------------------------------------------------------------
+✓ Production build: Successful (7 pages, ~4.1s)
+✓ Dev server: Running on localhost:4324/portfolio/
+✓ Static assets: Generated in dist/ with correct BASE_URL paths
+✓ GitHub Pages: Ready for deployment (needs GitHub authentication)
+✓ CI/CD: withastro/action + actions/deploy-pages configured
+
+Blocked: Push to GitHub & deploy to GitHub Pages
+Reason: Requires GitHub authentication (gh auth login or token)
+
+--------------------------------------------------------------------------------
+13. FILE STRUCTURE
+--------------------------------------------------------------------------------
+/home/rohit/web/project/first-website/
+├── astro.config.mjs
+├── package.json
+├── tsconfig.json
+├── PROJECT_STATUS_REPORT.txt (this file)
+├── public/
+│   ├── favicon.svg
+│   ├── fonts/
+│   │   └── jetbrains-mono.woff2
+│   └── assets/
+│       ├── system.css
+│       └── moments/
+├── src/
+│   ├── components/
+│   │   ├── Navbar.astro
+│   │   ├── ThemeToggle.astro
+│   │   ├── FloatingWhatsApp.astro
+│   │   └── BlueprintGrid.astro
+│   ├── content/
+│   │   ├── config.ts
+│   │   ├── site-copy/
+│   │   │   └── main.md
+│   │   ├── projects/
+│   │   │   └── avr-pss.md
+│   │   └── samples/
+│   │       └── sample-5bus-load-flow.md
+│   ├── layouts/
+│   │   └── BaseLayout.astro
+│   ├── pages/
+│   │   ├── index.astro
+│   │   ├── about.astro
+│   │   ├── services.astro
+│   │   ├── work.astro
+│   │   ├── contact.astro
+│   │   └── work/
+│   │       ├── avr-pss.astro
+│   │       └── load-flow.astro
+│   └── styles/
+│       └── global.css
+└── design-system/
+    └── rohit-kumar-sah-portfolio/
+        └── MASTER.md
+
+--------------------------------------------------------------------------------
+14. PENDING TASKS
+--------------------------------------------------------------------------------
+1. [BLOCKED] Push to GitHub & deploy to GitHub Pages
+   - Needs: gh auth login or GITHUB_TOKEN environment variable
+
+2. [OPTIONAL] Apply design-taste-frontend moments:
+   - photo-chapters (for visual storytelling)
+   - word-highlight (for key metrics/statements)
+   - picture-develops (for progressive image reveals)
+   - pinned-chapters (for sticky side content)
+
+3. [OPTIONAL] Add real full-color icons and diagram visuals:
+   - Service icons (load flow, solar, earthing, etc.)
+   - Tool icons (MATLAB, AutoCAD, Simulink, ETAP)
+   - Small diagram visuals in cards (hub with branches)
+
+4. [OPTIONAL] Create share.jpg for social preview (from hero tile)
+
+--------------------------------------------------------------------------------
+15. QUICK START FOR NEXT SESSION
+--------------------------------------------------------------------------------
+To continue work:
+
+1. Navigate to project:
+   cd /home/rohit/web/project/first-website
+
+2. Start dev server:
+   npm run dev -- --port 4322
+
+3. Build for production:
+   npm run build
+
+4. Deploy (after GitHub auth):
+   gh auth login
+   git add -A && git commit -m "Deploy" && git push origin main
+   # OR use the GitHub Actions workflow
+
+5. View design system:
+   cat design-system/rohit-kumar-sah-portfolio/MASTER.md
+
+================================================================================
+END OF REPORT
+================================================================================

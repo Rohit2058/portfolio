@@ -9,6 +9,9 @@
   rel="noopener noreferrer"
   aria-label="WhatsApp me"
 >
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+    <path d="M17 1c-3.866 0-7 3.143-7 7 0 1.19.205 2.332.562 3.4L2 23l4.213-.693a6.96 6.96 0 0 0 3.4.562c3.857 0 7-3.143 7-7s-3.143-7-7-7m0 1c.674 0 1.323.076 1.955.222a1 1 0 0 1 .131 1.399l-1.691 4.725c-.012.034-.03.062-.047.092a1 1 0 0 1-.125.256l-2.01 3.567a7 7 0 0 0-.572-.361l-.044-.038c-2.67-2.298-3.086-5.95-.944-8.751 1.483-1.947 4.274-2.375 6.691-.987a6.9 6.9 0 0 1 1.787 1.292 1 1 0 0 1 .161 1.062z" />
+  </svg>
   WhatsApp
 </a>
 
@@ -17,9 +20,12 @@
     background: #25d366;
     color: white;
     position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
+    bottom: max(1.5rem, env(safe-area-inset-bottom));
+    right: max(1.5rem, env(safe-area-inset-right));
     z-index: 1000;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     padding: 1rem 1.25rem;
     border-radius: 50px;
     box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
@@ -28,14 +34,18 @@
     font-weight: 600;
     text-decoration: none;
   }
+  .btn-icon-whatsapp svg {
+    width: 20px;
+    height: 20px;
+  }
   .btn-icon-whatsapp:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 28px rgba(37, 211, 102, 0.4);
   }
   @media (max-width: 768px) {
     .btn-icon-whatsapp {
-      bottom: 1rem;
-      right: 1rem;
+      bottom: max(1rem, env(safe-area-inset-bottom));
+      right: max(1rem, env(safe-area-inset-right));
       padding: 0.85rem 1rem;
       font-size: 0.9rem;
     }

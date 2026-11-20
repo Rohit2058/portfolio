@@ -1,0 +1,22 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "src/layouts/BaseLayout.astro"
+        ],
+        "createdAt": "2026-11-17T19:51:46.674Z",
+        "reason": "WhatsApp brand color for floating CTA button - intentional design choice, not AI default"
+      },
+      {
+        "rule": "overused-font",
+        "value": "lato",
+        "createdAt": "2026-11-18T14:23:04.046Z"
+      }
+    ]
+  }
+}

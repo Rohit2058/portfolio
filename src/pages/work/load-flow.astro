@@ -11,7 +11,7 @@ const contact = {
 };
 ---
 
-<BaseLayout title="5-Bus Load Flow Worked Example" description="5-bus Newton-Raphson load flow worked example — workbook, MATLAB script, network diagram, convergence chart and write-up. Assumed data, not a client project.">
+<BaseLayout title="5-Bus Load Flow Worked Example" description="5-bus Newton-Raphson load flow worked example — workbook, MATLAB script, network diagram, convergence chart and write-up.">
   <section class="project-detail section">
     <div class="container">
       <!-- Header -->
@@ -21,7 +21,6 @@ const contact = {
       </div>
 
       <div class="project-meta" style="display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 3rem; color: var(--muted); font-size: 0.95rem;">
-        <span class="badge-todo" style="margin: 0;">Worked example · Assumed data</span>
         <span><strong>Method:</strong> Newton-Raphson power flow</span>
         <span><strong>Tools:</strong> MATLAB, Excel</span>
       </div>
@@ -29,7 +28,7 @@ const contact = {
       <div class="glass-card scroll-reveal" style="margin-bottom: 3rem;">
         <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--ink); margin: 0 0 1.5rem;">What this is</h2>
         <p style="color: var(--muted); margin: 0; line-height: 1.8;">
-          A complete worked example of a 5-bus power system solved with the Newton-Raphson method. This is a learning exercise with assumed data — not a client project. Check all values against current standards and NEA rules before real use.
+          A complete worked example of a 5-bus power system solved with the Newton-Raphson method. Check all values against current standards and NEA rules before real use.
         </p>
       </div>
 
@@ -122,7 +121,7 @@ const contact = {
 
       <div class="glass-card scroll-reveal" style="margin-bottom: 3rem;">
         <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--ink); margin: 0 0 1.5rem;">Convergence</h2>
-        <img src="/content/figures/loadflow-convergence.png" alt="Newton-Raphson convergence chart" style="width: 100%; max-width: 600px; border-radius: 12px; border: 1px solid var(--glass-border);" />
+        <img src={`${BASE}content/figures/loadflow-convergence.png`} alt="Newton-Raphson convergence chart" style="width: 100%; max-width: 600px; border-radius: 12px; border: 1px solid var(--glass-border); display: block; margin: 0 auto;" />
         <p style="color: var(--muted); margin: 1rem 0 0; font-size: 0.9rem;">
           Mismatch drops below 1×10⁻⁶ p.u. in 4 iterations.
         </p>
@@ -185,8 +184,8 @@ const contact = {
       <div class="glass-card scroll-reveal" style="margin-bottom: 3rem;">
         <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--ink); margin: 0 0 1.5rem;">Download files</h2>
         <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-          <a href="/content/samples/sample-5bus-load-flow.xlsx" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem;">Excel workbook</a>
-          <a href="/content/samples/solve_loadflow.m" class="btn btn-outline" style="display: inline-flex; align-items: center; gap: 0.5rem;">MATLAB script</a>
+          <a href={`${BASE}content/samples/sample-5bus-load-flow.xlsx`} class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem;">Excel workbook</a>
+          <a href={`${BASE}content/samples/solve_loadflow.m`} class="btn btn-outline" style="display: inline-flex; align-items: center; gap: 0.5rem;">MATLAB script</a>
         </div>
       </div>
 

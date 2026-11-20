@@ -6,8 +6,7 @@ const BASE = import.meta.env.BASE_URL;
 const services = [
   {
     title: 'Load flow (power flow) studies',
-    description: 'Bus voltages, line flows and losses for small power systems and distribution networks, modelled in MATLAB/Simulink, with the method, data and assumptions written out. See the 5-bus worked example under Work.',
-    badge: 'Primary service',
+    description: 'Bus voltages, line flows and losses for small power systems and distribution networks, modelled in MATLAB/Simulink, with the method, data and assumptions written out. See the 5-bus example under Work.',
   },
   {
     title: 'Load calculation and demand estimation',
@@ -54,12 +53,11 @@ const contact = {
         <span class="section-number">01</span>
         <h1 style="font-size: 2.5rem; color: var(--ink); margin: 0;">Services</h1>
       </div>
-      <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+      <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(1.5rem, 3vw, 2rem);">
         {services.map((svc, i) => (
           <div class="glass-card scroll-reveal" style="display: flex; flex-direction: column;">
             <div class="service-number" style="font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; color: var(--amber); margin-bottom: 1rem;">0{i + 1}</div>
             <h3 style="font-family: var(--font-heading); font-size: 1.25rem; color: var(--ink); margin: 0 0 1rem;">{svc.title}</h3>
-            {svc.badge && <span class="badge-todo" style="margin-bottom: 1rem; display: inline-block;">{svc.badge}</span>}
             <p style="color: var(--muted); margin: 0 0 1.5rem; line-height: 1.7; flex: 1;">{svc.description}</p>
             <a href={`${BASE}contact/`} class="btn btn-outline" style="margin-top: auto;">Get a quote</a>
           </div>

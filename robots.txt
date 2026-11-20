@@ -1,0 +1,17 @@
+# Robots.txt for Rohit Kumar Sah Portfolio
+# GitHub Pages deployment at https://rohit2058.github.io/portfolio/
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://rohit2058.github.io/portfolio/sitemap.xml
+
+# Disallow private/admin paths
+Disallow: /_astro/
+Disallow: /assets/moments/
+Disallow: /assets/system.css
+Disallow: /assets/design-system.css
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 10

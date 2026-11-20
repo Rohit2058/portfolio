@@ -1,0 +1,23 @@
+{
+  "name": "Rohit Kumar Sah — Electrical Engineer & Freelancer",
+  "short_name": "Rohit Sah",
+  "description": "Electrical calculations, drawings and simulation, explained clearly. Load calculations, load flow studies, cable and breaker sizing, solar PV sizing, MATLAB/Simulink, AutoCAD drawings.",
+  "start_url": "/portfolio/",
+  "display": "standalone",
+  "background_color": "#FAFAFA",
+  "theme_color": "#1E3A8A",
+  "icons": [
+    {
+      "src": "/portfolio/android-chrome-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/portfolio/android-chrome-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
